@@ -1,0 +1,46 @@
+{
+  "identifier": "migrated",
+  "description": "permissions that were migrated from v1",
+  "local": true,
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "path:default",
+    "event:default",
+    "window:default",
+    "app:default",
+    "resources:default",
+    "menu:default",
+    "tray:default",
+    "window:allow-maximize",
+    "window:allow-unmaximize",
+    "window:allow-minimize",
+    "window:allow-unminimize",
+    "window:allow-show",
+    "window:allow-hide",
+    "window:allow-close",
+    "window:allow-start-dragging",
+    "shell:allow-open",
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://*.effects.workers.dev/*"
+        },
+        {
+          "url": "https://*.fabric.ophelia-matrix.net/*"
+        },
+        {
+          "url": "https://*.netmaker.k-harumi.pro/*"
+        },
+        {
+          "url": "http://127.0.0.1:8787/*"
+        }
+      ]
+    },
+    "http:default",
+    "shell:default",
+    "http:default"
+  ]
+}

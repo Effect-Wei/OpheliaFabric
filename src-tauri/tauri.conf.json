@@ -1,0 +1,55 @@
+{
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420"
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "resources": [
+      "*.dll"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ]
+  },
+  "productName": "Ophelia Fabric",
+  "version": "0.1.0",
+  "identifier": "net.ophelia-matrix.fabric",
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJDM0E1RDQ3MzFDMzYxMTQKUldRVVljTXhSMTA2dk02OStEdy9GdGIwZzJ1MHpnK2UxNHFYNS9wMyswLzIwNUtDTTc2T0VRYUMK",
+      "endpoints": [
+        "https://releases.fabric.ophelia-matrix.net/v1/{{target}}/{{arch}}/{{current_version}}"
+      ]
+    }
+  },
+  "app": {
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": false,
+        "transparent": true,
+        "decorations": false,
+        "title": "Ophelia Fabric",
+        "center": true,
+        "width": 300,
+        "height": 400,
+        "windowEffects": {
+          "effects": [
+            "mica",
+            "acrylic"
+          ]
+        }
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  }
+}
