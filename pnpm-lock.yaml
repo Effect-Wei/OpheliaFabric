@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@fluentui/web-components':
     specifier: ^2.6.0
-    version: 2.6.0
+    version: 2.6.1
   '@tauri-apps/api':
     specifier: ^2.0.0-beta
     version: 2.0.0-beta.7
@@ -267,12 +267,12 @@ packages:
     dev: true
     optional: true
 
-  /@fluentui/web-components@2.6.0:
-    resolution: {integrity: sha512-Ojf1W+mdRcbNWsXCIIAoUBz4kgLyZzdWuys5VBdOrVg7hRHg9uU0cS6B7zNQtihsNYZkIAFGhvhRs4PsoIZ+uQ==}
+  /@fluentui/web-components@2.6.1:
+    resolution: {integrity: sha512-coyV+QZBVqcrJbncR2iyL0ZMXGFRJmP+JYUlewkYBt8bgmTMIwKBdUX0cN9S6KUp8JHoC2OSRqL8MYgT3T+YLQ==}
     dependencies:
       '@microsoft/fast-colors': 5.3.1
-      '@microsoft/fast-element': 1.12.0
-      '@microsoft/fast-foundation': 2.49.5
+      '@microsoft/fast-element': 1.13.0
+      '@microsoft/fast-foundation': 2.49.6
       '@microsoft/fast-web-utilities': 5.4.1
       tslib: 2.6.2
     dev: false
@@ -284,14 +284,14 @@ packages:
     resolution: {integrity: sha512-72RZXVfCbwQzvo5sXXkuLXLT7rMeYaSf5r/6ewQiv/trBtqpWRm4DEH2EilHw/iWTBKOXs1qZNQndgUMa5n4LA==}
     dev: false
 
-  /@microsoft/fast-element@1.12.0:
-    resolution: {integrity: sha512-gQutuDHPKNxUEcQ4pypZT4Wmrbapus+P9s3bR/SEOLsMbNqNoXigGImITygI5zhb+aA5rzflM6O8YWkmRbGkPA==}
+  /@microsoft/fast-element@1.13.0:
+    resolution: {integrity: sha512-iFhzKbbD0cFRo9cEzLS3Tdo9BYuatdxmCEKCpZs1Cro/93zNMpZ/Y9/Z7SknmW6fhDZbpBvtO8lLh9TFEcNVAQ==}
     dev: false
 
-  /@microsoft/fast-foundation@2.49.5:
-    resolution: {integrity: sha512-3PpG1BNmZ5kUM1goYU3SsxjsM2H7Rk0ZmpDJ7mnRhWDgKiM5SzJ02KvALRUqDrJQoeDnkW0Q2Q+r9SkEd68Gpg==}
+  /@microsoft/fast-foundation@2.49.6:
+    resolution: {integrity: sha512-DZVr+J/NIoskFC1Y6xnAowrMkdbf2d5o7UyWK6gW5AiQ6S386Ql8dw4KcC4kHaeE1yL2CKvweE79cj6ZhJhTvA==}
     dependencies:
-      '@microsoft/fast-element': 1.12.0
+      '@microsoft/fast-element': 1.13.0
       '@microsoft/fast-web-utilities': 5.4.1
       tabbable: 5.3.3
       tslib: 1.14.1
