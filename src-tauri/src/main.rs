@@ -15,7 +15,7 @@ use std::{
         atomic::{AtomicBool, Ordering},
         Arc,
     },
-    time::{Duration, Instant},
+    time::{Duration, SystemTime},
     vec,
 };
 use tauri::Manager;
@@ -40,7 +40,7 @@ struct AuthInfo {
 struct WgStatistics {
     up: u64,
     down: u64,
-    handshake_age: u64,
+    handshake_age: String,
 }
 
 fn main() {
@@ -173,7 +173,9 @@ fn wg_connect(
     };
     assert!(adapter.set_logging(wireguard_nt::AdapterLoggingLevel::OnWithPrefix));
 
-    adapter.set_config(&interface).unwrap();
+    adapter
+        .set_config(&interface)
+        .expect("Can't set config for Wireguard adapter!");
     match adapter.set_default_route(&[Ipv4Net::new(internal_ip, 24).unwrap().into()], &interface) {
         Ok(()) => {}
         Err(err) => panic!("Failed to set default route: {}", err),
@@ -182,8 +184,6 @@ fn wg_connect(
 
     let stop = Arc::clone(&WG_STOP_TUNNEL);
     let _thread = std::thread::spawn(move || {
-        println!("Waiting 10s to ensure the handshake occurs...");
-        std::thread::sleep(Duration::from_secs(10));
         println!();
         println!("Printing peer bandwidth statistics");
 
@@ -197,23 +197,32 @@ fn wg_connect(
             }
             let stats = adapter.get_config();
             for peer in stats.peers {
-                let handshake_age = Instant::now().saturating_duration_since(peer.last_handshake);
-                window
-                    .emit(
-                        "wg-statistics",
-                        WgStatistics {
-                            up: peer.tx_bytes,
-                            down: peer.rx_bytes,
-                            handshake_age: handshake_age.as_secs(),
-                        },
-                    )
-                    .unwrap();
+                let handshake_age: String;
+                if let Some(last_handshake) = peer.last_handshake {
+                    handshake_age = format!(
+                        "{:.1}",
+                        SystemTime::now()
+                            .duration_since(last_handshake)
+                            .unwrap()
+                            .as_secs_f64()
+                    );
+                } else {
+                    handshake_age = "N/A".to_string();
+                }
+                let _ = window.emit(
+                    "wg-statistics",
+                    WgStatistics {
+                        up: peer.tx_bytes,
+                        down: peer.rx_bytes,
+                        handshake_age: handshake_age.clone(),
+                    },
+                );
                 println!(
-                    "  {:?}, up: {}, down: {}, handshake: {:.1}s ago",
+                    "  {:?}, up: {}, down: {}, handshake: {}s ago",
                     peer.allowed_ips,
                     peer.tx_bytes,
                     peer.rx_bytes,
-                    handshake_age.as_secs()
+                    handshake_age.clone()
                 );
             }
         }

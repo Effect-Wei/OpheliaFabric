@@ -19,7 +19,7 @@
     ]
   },
   "productName": "Ophelia Fabric",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "identifier": "net.ophelia-matrix.fabric",
   "plugins": {
     "updater": {

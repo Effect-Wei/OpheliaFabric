@@ -1,6 +1,6 @@
 [package]
 name = "ophelia_fabric"
-version = "0.1.0"
+version = "0.1.1"
 description = "Ophelia Fabric"
 authors = ["Ophelia Matrix"]
 license = "LGPL-2.1"
