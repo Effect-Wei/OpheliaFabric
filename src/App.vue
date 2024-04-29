@@ -31,6 +31,9 @@ const state = reactive({
     up: 0,
     down: 0,
     handshakeAge: 0
+  },
+  wgPing: {
+    latency: -1
   }
 })
 const NETMAKER_API = "https://api.fabric.ophelia-matrix.net"
@@ -73,6 +76,13 @@ async function initListeners() {
       handshakeAge: event.payload.handshake_age
     }
     console.log(state.wgStatistics)
+  })
+
+  listen("wg-ping", (event) => {
+    state.wgPing = {
+      latency: event.payload.latency
+    }
+    console.log(state.wgPing)
   })
 
   listen("close", async () => {
@@ -148,7 +158,8 @@ async function connectWg() {
     peerPublicKey: state.ingressGateway.peerPublicKey,
     internalIp: state.extClient.internalIp,
     endpoint: state.extClient.endpoint,
-    allowedIp: state.ingressGateway.allowedIp
+    allowedIp: state.ingressGateway.allowedIp,
+    serverInternalIp: state.ingressGateway.address
   })
 
   state.isConnected = true

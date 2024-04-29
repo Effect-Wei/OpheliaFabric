@@ -8,6 +8,7 @@ use aes_gcm::{
 use base64::Engine;
 use ipnet::{IpNet, Ipv4Net};
 use once_cell::sync::{Lazy, OnceCell};
+use regex::Regex;
 use std::{
     net::{Ipv4Addr, SocketAddr},
     panic,
@@ -43,6 +44,11 @@ struct WgStatistics {
     handshake_age: String,
 }
 
+#[derive(Clone, serde::Serialize)]
+struct WgPing {
+    latency: i64,
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
@@ -64,6 +70,13 @@ fn main() {
 
 fn get_aes_key() -> &'static str {
     return env!("OF_AUTH_AES_KEY");
+}
+
+fn extract_ipv4_addr(input: &str) -> Option<&str> {
+    let regex_ipv4: Regex = Regex::new(r"(?<ip>(?:(?:1[0-9][0-9]\.)|(?:2[0-4][0-9]\.)|(?:25[0-5]\.)|(?:[1-9][0-9]\.)|(?:[0-9]\.)){3}(?:(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5])|(?:[1-9][0-9])|(?:[0-9])))").unwrap();
+    regex_ipv4
+        .captures(input)
+        .and_then(|cap| cap.name("ip").map(|ip| ip.as_str()))
 }
 
 #[tauri::command]
@@ -106,8 +119,16 @@ fn get_of_auth_token() -> String {
 }
 
 #[tauri::command]
-fn wg_disconnect() {
+fn wg_disconnect(window: tauri::Window) {
     WG_STOP_TUNNEL.store(true, Ordering::Relaxed);
+    let _ = window.emit(
+        "wg-statistics",
+        WgStatistics {
+            up: 0,
+            down: 0,
+            handshake_age: "N/A".to_string(),
+        },
+    );
     println!();
     println!("Exiting!");
 }
@@ -118,6 +139,7 @@ fn wg_connect(
     peer_public_key: &str,
     internal_ip: &str,
     endpoint: &str,
+    server_internal_ip: &str,
     allowed_ip: Vec<&str>,
     window: tauri::Window,
 ) {
@@ -182,14 +204,17 @@ fn wg_connect(
     }
     assert!(adapter.up());
 
-    let stop = Arc::clone(&WG_STOP_TUNNEL);
-    let _thread = std::thread::spawn(move || {
+    // Poll network status and report
+    let stop_wg = Arc::clone(&WG_STOP_TUNNEL);
+    let window1 = window.clone();
+
+    let _thread_wg = std::thread::spawn(move || {
         println!();
         println!("Printing peer bandwidth statistics");
 
         'outer: loop {
             for _ in 0..5 {
-                if stop.load(Ordering::Relaxed) {
+                if stop_wg.load(Ordering::Relaxed) {
                     drop(adapter);
                     break 'outer;
                 }
@@ -209,7 +234,7 @@ fn wg_connect(
                 } else {
                     handshake_age = "N/A".to_string();
                 }
-                let _ = window.emit(
+                let _ = window1.emit(
                     "wg-statistics",
                     WgStatistics {
                         up: peer.tx_bytes,
@@ -224,6 +249,44 @@ fn wg_connect(
                     peer.rx_bytes,
                     handshake_age.clone()
                 );
+            }
+        }
+    });
+
+    //Ping server and report
+    let addr = extract_ipv4_addr(server_internal_ip)
+        .expect("Server IP should not be None!")
+        .parse()
+        .unwrap();
+    let timeout = Duration::from_secs(5);
+    let stop_ping = Arc::clone(&WG_STOP_TUNNEL);
+    let window2 = window.clone();
+
+    let _thread_ping = std::thread::spawn(move || {
+        let data = [0; 32];
+
+        'outer: loop {
+            for _ in 0..5 {
+                if stop_ping.load(Ordering::Relaxed) {
+                    break 'outer;
+                }
+                std::thread::sleep(Duration::from_millis(200));
+            }
+            let result = ping_rs::send_ping(&addr, timeout, &data, None);
+            match result {
+                Ok(reply) => {
+                    println!("Ping {}: latency={}ms", reply.address, reply.rtt);
+                    let _ = window2.emit(
+                        "wg-ping",
+                        WgPing {
+                            latency: reply.rtt.into(),
+                        },
+                    );
+                }
+                Err(e) => {
+                    println!("{:?}", e);
+                    let _ = window2.emit("wg-ping", WgPing { latency: -1 });
+                }
             }
         }
     });
