@@ -21,8 +21,8 @@ importers:
         specifier: 2.0.0-beta.2
         version: 2.0.0-beta.2
       '@tauri-apps/plugin-updater':
-        specifier: 2.0.0-beta.2
-        version: 2.0.0-beta.2
+        specifier: 2.0.0-beta.3
+        version: 2.0.0-beta.3
       vue:
         specifier: ^3.4.25
         version: 3.4.26
@@ -301,6 +301,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@tauri-apps/api@2.0.0-beta.11':
+    resolution: {integrity: sha512-wJRY+fBUm3KpqZDHMIz5HRv+1vlnvRJ/dFxiyY3NlINTx2qXqDou5qWYcP1CuZXsd39InWVPV3FAZvno/kGCkA==}
+    engines: {node: '>= 18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+
   '@tauri-apps/api@2.0.0-beta.4':
     resolution: {integrity: sha512-Nxtj28NYUo5iwYkpYslxmOPkdI2WkELU2e3UH9nbJm9Ydki2CQwJVGQxx4EANtdZcMNsEsUzRqaDTvEUYH1l6w==}
     engines: {node: '>= 18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
@@ -384,8 +388,8 @@ packages:
   '@tauri-apps/plugin-shell@2.0.0-beta.2':
     resolution: {integrity: sha512-9rWsfN7Wt+EuWmpmNnK8bCs+04fzhEYrHtWyLIAYxb9diFdcJrEoctCP9YM2v+Uf8/y8qFC7VCbZ/9VQHANymQ==}
 
-  '@tauri-apps/plugin-updater@2.0.0-beta.2':
-    resolution: {integrity: sha512-T8EkAXawbyV/6/Lcf1VVIWhtGuals63zKn+udYNqlC8CRM5iYQ+8bM8Nmy2E+pIzkkx93d1t6/8geFitLZPmKw==}
+  '@tauri-apps/plugin-updater@2.0.0-beta.3':
+    resolution: {integrity: sha512-bD1ikPz80uK9YJKNYpYlA6StSp9lr0Ob1kGLG2XdmOgspv7SZLLNVzMORtKeqgepxwG99qdYGDDegT3Ll6+UlA==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -680,6 +684,8 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.16.4':
     optional: true
 
+  '@tauri-apps/api@2.0.0-beta.11': {}
+
   '@tauri-apps/api@2.0.0-beta.4': {}
 
   '@tauri-apps/api@2.0.0-beta.9': {}
@@ -735,9 +741,9 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.4
 
-  '@tauri-apps/plugin-updater@2.0.0-beta.2':
+  '@tauri-apps/plugin-updater@2.0.0-beta.3':
     dependencies:
-      '@tauri-apps/api': 2.0.0-beta.4
+      '@tauri-apps/api': 2.0.0-beta.11
 
   '@types/estree@1.0.5': {}
 
