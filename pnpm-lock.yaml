@@ -15,8 +15,8 @@ importers:
         specifier: 2.0.0-beta.13
         version: 2.0.0-beta.13
       '@tauri-apps/plugin-http':
-        specifier: 2.0.0-beta.3
-        version: 2.0.0-beta.3
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
       '@tauri-apps/plugin-shell':
         specifier: 2.0.0-beta.4
         version: 2.0.0-beta.4
@@ -365,8 +365,8 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@tauri-apps/plugin-http@2.0.0-beta.3':
-    resolution: {integrity: sha512-TsSFQje2F3Sy5FYuOV+TcgtlvpO9FVdODGT/dJQa+kq/a8Ocel6V57Emj2FiCIyhOJ84us+MiMbQWR1GTfa+mQ==}
+  '@tauri-apps/plugin-http@2.0.0-beta.5':
+    resolution: {integrity: sha512-zRWWWCNw/TdewCSrBY8Racm2dwMpkzMOnFmHGExEIoklqUUIq3FU/hkqcX/67Nplf+t1y+WljOxKpCHbm1fOQw==}
 
   '@tauri-apps/plugin-shell@2.0.0-beta.4':
     resolution: {integrity: sha512-y9APB3ZLtkY4IM6syE+dn/R4XR2UTHBcAI/n9L5PgnvOjJAuuEzVYURn10G51nKnLw+sFbxO7LW4VW66Uoaa9g==}
@@ -714,9 +714,9 @@ snapshots:
       '@tauri-apps/cli-win32-ia32-msvc': 2.0.0-beta.20
       '@tauri-apps/cli-win32-x64-msvc': 2.0.0-beta.20
 
-  '@tauri-apps/plugin-http@2.0.0-beta.3':
+  '@tauri-apps/plugin-http@2.0.0-beta.5':
     dependencies:
-      '@tauri-apps/api': 2.0.0-beta.11
+      '@tauri-apps/api': 2.0.0-beta.13
 
   '@tauri-apps/plugin-shell@2.0.0-beta.4':
     dependencies:
