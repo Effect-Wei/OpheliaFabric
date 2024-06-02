@@ -21,8 +21,8 @@ importers:
         specifier: 2.0.0-beta.6
         version: 2.0.0-beta.6
       '@tauri-apps/plugin-updater':
-        specifier: 2.0.0-beta.3
-        version: 2.0.0-beta.3
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5
       vue:
         specifier: ^3.4.25
         version: 3.4.27
@@ -292,10 +292,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@tauri-apps/api@2.0.0-beta.11':
-    resolution: {integrity: sha512-wJRY+fBUm3KpqZDHMIz5HRv+1vlnvRJ/dFxiyY3NlINTx2qXqDou5qWYcP1CuZXsd39InWVPV3FAZvno/kGCkA==}
-    engines: {node: '>= 18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
-
   '@tauri-apps/api@2.0.0-beta.13':
     resolution: {integrity: sha512-Np1opKANzRMF3lgJ9gDquBCB9SxlE2lRmNpVx1+L6RyzAmigkuh0ZulT5jMnDA3JLsuSDU135r/s4t/Pmx4atg==}
     engines: {node: '>= 18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
@@ -371,8 +367,8 @@ packages:
   '@tauri-apps/plugin-shell@2.0.0-beta.6':
     resolution: {integrity: sha512-g3nM9cQQGl7Iv4MvyFuco/aPTiwOI/MixcoKso3VQIg5Aqd64NqR0r+GfsB0qx52txItqzSXwmeaj1eZjO9Q6Q==}
 
-  '@tauri-apps/plugin-updater@2.0.0-beta.3':
-    resolution: {integrity: sha512-bD1ikPz80uK9YJKNYpYlA6StSp9lr0Ob1kGLG2XdmOgspv7SZLLNVzMORtKeqgepxwG99qdYGDDegT3Ll6+UlA==}
+  '@tauri-apps/plugin-updater@2.0.0-beta.5':
+    resolution: {integrity: sha512-h8uNFQDtXaZPFyQcNAB5SxiSIvPbYRlM1fXf/lCcW8bAaMTanyszbHvR2vAYtVa/wIzKAOYriC/MpsJaKLjyhg==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -667,8 +663,6 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.17.2':
     optional: true
 
-  '@tauri-apps/api@2.0.0-beta.11': {}
-
   '@tauri-apps/api@2.0.0-beta.13': {}
 
   '@tauri-apps/cli-darwin-arm64@2.0.0-beta.20':
@@ -722,9 +716,9 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.0.0-beta.13
 
-  '@tauri-apps/plugin-updater@2.0.0-beta.3':
+  '@tauri-apps/plugin-updater@2.0.0-beta.5':
     dependencies:
-      '@tauri-apps/api': 2.0.0-beta.11
+      '@tauri-apps/api': 2.0.0-beta.13
 
   '@types/estree@1.0.5': {}
 
