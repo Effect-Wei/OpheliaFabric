@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@fluentui/web-components": "^2.6.1",
-    "@tauri-apps/api": "2.0.0-beta.13",
+    "@tauri-apps/api": "2.0.0-rc.2",
     "@tauri-apps/plugin-http": "2.0.0-beta.5",
     "@tauri-apps/plugin-shell": "2.0.0-beta.6",
     "@tauri-apps/plugin-updater": "2.0.0-beta.5",
     "vue": "^3.4.25"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "2.0.0-beta.20",
+    "@tauri-apps/cli": "2.0.0-rc.5",
     "@vitejs/plugin-vue": "^5.0.4",
     "vite": "^5.2.10"
   }
