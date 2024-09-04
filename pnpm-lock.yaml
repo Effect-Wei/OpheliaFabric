@@ -21,8 +21,8 @@ importers:
         specifier: 2.0.0-rc.1
         version: 2.0.0-rc.1
       '@tauri-apps/plugin-updater':
-        specifier: 2.0.0-rc.0
-        version: 2.0.0-rc.0
+        specifier: 2.0.0-rc.1
+        version: 2.0.0-rc.1
       vue:
         specifier: ^3.4.25
         version: 3.4.38
@@ -366,8 +366,8 @@ packages:
   '@tauri-apps/plugin-shell@2.0.0-rc.1':
     resolution: {integrity: sha512-JtNROc0rqEwN/g93ig5pK4cl1vUo2yn+osCpY9de64cy/d9hRzof7AuYOgvt/Xcd5VPQmlgo2AGvUh5sQRSR1A==}
 
-  '@tauri-apps/plugin-updater@2.0.0-rc.0':
-    resolution: {integrity: sha512-EKajf/sBpFif0cwXhTo3BmNvTZ2t2DDLRyhA8FFKugZNoOeqU97bHhPT5DIqMUPRE1tyDk9o7sXm8dKf7oz+EA==}
+  '@tauri-apps/plugin-updater@2.0.0-rc.1':
+    resolution: {integrity: sha512-SwQhDad/jnGIUe4eFfVBZ+0wRZthPSLwrFAl/K0Fyuu7dD/uGHS/jbATxZzwFDGfcpWOGLOsS8+LqSmY5zufHw==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -718,7 +718,7 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.0.0-rc.4
 
-  '@tauri-apps/plugin-updater@2.0.0-rc.0':
+  '@tauri-apps/plugin-updater@2.0.0-rc.1':
     dependencies:
       '@tauri-apps/api': 2.0.0-rc.4
 
